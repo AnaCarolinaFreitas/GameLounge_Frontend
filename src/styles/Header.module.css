@@ -1,0 +1,36 @@
+.header {
+    background-color: #15171E;
+    color: #F5FAFC;
+    padding: 20px;
+    width: 100%;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    border-radius: 100%;
+    width: 5rem;
+    height: auto;
+}
+
+.title {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.3rem;
+}
+
+.name {
+    font-weight: 100;
+    font-size: 1rem;
+}
+
+.slogan {
+    font-size: 0.7rem;
+    font-weight: 300;
+}
+
