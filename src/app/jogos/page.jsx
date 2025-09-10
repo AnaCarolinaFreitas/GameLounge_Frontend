@@ -111,7 +111,8 @@ export default function page() {
                 className={styles.jogoFoto}
               />
               <h3 className={styles.jogoNome}>{jogo.name}</h3>
-              <p className={styles.jogoInfo}>{jogo.genre}</p>
+              <p className={styles.jogoInfo}>{jogo.genre1}</p>
+              <p className={styles.jogoInfo}>{jogo.genre2}</p>
             </div>
           ))}
         </div>
