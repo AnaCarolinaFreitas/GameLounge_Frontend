@@ -10,6 +10,13 @@ export default function Header() {
         <h1 className={styles.name}>GameLounge</h1>
         <p className={styles.slogan}>A sua próxima jogada começa aqui.</p>
        </div>
+
+       <section className={styles.nav}>
+        <a href="home" className={styles.link}>Home</a>
+        <a href="jogos" className={styles.link}>Games</a>
+        <a href="nextgame" className={styles.link}>NextGame</a>
+        <a href="desenvolvedora" className={styles.link}>Desenvolvedora</a>
+       </section>
     </header> 
   )
 }
