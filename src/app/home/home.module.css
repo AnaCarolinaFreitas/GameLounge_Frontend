@@ -8,7 +8,8 @@
   justify-content: space-between;
   gap: 2rem;
   padding: 4rem 5vw 3rem;
-  min-height: 70vh;
+  min-height: 60vh;
+  flex-wrap: wrap;
   overflow: hidden;
   background-color: #15171E;
 }
@@ -20,11 +21,12 @@
   overflow: hidden;
   z-index: 0;
   width: 70%;
-  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   top: -10%;
+  max-width: 100%;
+  height: auto;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -84,4 +86,69 @@
 .cardsContainer{
   background-color: #F5FAFC;
   padding: 2rem;
+}
+
+.nextGame {
+  background: linear-gradient(180deg, #F5FAFC 2%, #D2CDF2 16%, #C0B4EE 27%, #9C80F0 50%, #7F66CD 63%, #584894 77%, #140D2E 100%);
+  padding: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.nextGameText {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: #F5FAFC;
+  width: 40%;
+}
+
+.nextGameText span {
+  color: #81DEA8;
+  font-weight: bold;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.nextGameButton {
+  background-color: #F5FAFC;
+  color: #15171E;
+  border: none;
+  padding: 2rem;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.nextGameButton:hover {
+  background-color: #E0E7FF;
+}
+
+@media (max-width: 768px) {
+  .homeBanner {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem 2vw 1rem;
+    min-height: 30vh;
+  }
+  .banner {
+    top: 0;
+    left: 50%;
+    width: 100%;
+  }
+  .peao {
+    top: 55%;
+    left: 50%;
+    width: 40vw;
+    max-width: 180px;
+    min-width: 80px;
+    height: auto;
+  }
 }

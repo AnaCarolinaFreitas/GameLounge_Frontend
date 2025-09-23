@@ -1,0 +1,103 @@
+.footer {
+    background-color: #1F2028;
+    color: #FFFFFF;
+    padding: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: auto;
+    gap: 1.5rem;
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.text{
+    color: #FFFFFF;
+    margin: 5px 0;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.pages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.pages h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.link {
+    color: #A78BFA;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contactTitle {
+    font-size: 18px;
+    margin: 0 0 8px 0;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.contactInfo {
+    font-size: 14px;
+    margin: 0;
+    font-weight: 400;
+}
+
+.contactInfo a {
+    color: #A78BFA;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contactInfo a:hover {
+    color: #FFFFFF;
+}
+
+/* Seção da logo e descrição */
+.logoSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 280px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .logoSection {
+        align-items: center;
+        max-width: 100%;
+    }
+    
+    .pages, .contact {
+        align-items: center;
+        text-align: center;
+    }
+}

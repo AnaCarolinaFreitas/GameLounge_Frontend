@@ -1,10 +1,13 @@
+"use client"
 import React from 'react'
 import Header from '../../components/Header'
 import styles from './home.module.css'
 import Image from 'next/image'
 import FeaturedGames from '../../components/CardHome'
-
+import { useRouter } from 'next/navigation'
 export default function home() {
+  const router = useRouter()
+  
   return (
     <>
       <Header />
@@ -26,6 +29,17 @@ export default function home() {
 
       <div className={styles.cardsContainer}>
       <FeaturedGames />
+      </div>
+
+      <div className={styles.nextGame}>
+        <Image src={"/images/nextgame.png"} width={400} height={400} alt="Ponto de interrogação" className={styles.nextGameImage}/>
+        <div className={styles.nextGameText}>
+          <h1>Conheça o NextGame!</h1>
+          <p>Não sabe qual o jogo ideal para você e seu grupo de amigos? <span>O NextGame te ajuda!</span> Responda o quiz e encontre o jogo ideal para sua mesa</p>
+        </div>
+        <div className={styles.button}>
+        <button className={styles.nextGameButton} onClick={() => window.location.href = '/nextgame'}><h2>Descubra já!</h2></button>
+        </div>
       </div>
       </section>
     </>

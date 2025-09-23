@@ -1,0 +1,217 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #15171E;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.backButton {
+    background-color: #A78BFA;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    transition: background-color 0.2s;
+    align-self: center;
+    text-align: left;
+}
+
+.backButton:hover {
+    background-color: #8B5CF6;
+}
+
+.jogoInfo {
+    display: flex;
+    flex-direction: row;
+    background-color: #F5F5F5;
+    border-radius: 15px;
+    border-color: #81DEA8;
+    border-width: 0.3rem;
+    border-style: solid;
+    width: 80%;
+    padding: 4rem;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.jogoImageAndRating {
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.jogoImageContainer {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.jogoImagem{
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: #15171e6d 0px 4px 12px;
+    display: block;
+    object-fit: cover;
+}
+
+.jogoRating {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.ratingValue {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333333;
+}
+
+.classificação, .players {
+    font-size: 16px;
+    width: fit-content;
+    padding: 0.5rem;
+    border-radius: 15px;
+    background-color: #b3b2b2;
+    color: #F5F5F5;
+    margin-top: 10px;
+}
+
+.jogoDetails {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    margin-left: 13rem;
+}
+
+.jogoNome {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #A78BFA;
+}
+
+.description {
+    width: 90%;
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.5;
+    text-align: justify;
+    margin-top: 10px;
+    white-space: pre-wrap; /* Mantém quebras de linha */
+    word-wrap: break-word; /* Quebra palavras longas */
+    overflow-wrap: break-word; /* Quebra palavras longas */
+    hyphens: auto; /* Hifeniza palavras longas */
+    text-justify: inter-word; /* Justifica o texto */
+    text-align-last: left; /* Alinha a última linha à esquerda */
+}
+
+.rules, .commentsTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 4rem 0 10px 0;
+    color: #A78BFA;
+}
+
+.rulesContainer {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    gap: 25px;
+}
+
+.mechanics, .rulesText {
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.5;
+    text-align: justify;
+    white-space: pre-wrap; /* Mantém quebras de linha */
+    word-wrap: break-word; /* Quebra palavras longas */
+    overflow-wrap: break-word; /* Quebra palavras longas */
+    hyphens: auto; /* Hifeniza palavras longas */
+    text-justify: inter-word; /* Justifica o texto */
+    text-align-last: left; /* Alinha a última linha à esquerda */
+}
+
+.mechanics span, .rulesText span {
+    font-weight: bold;
+    color: #A78BFA;
+}
+
+.commentsSection {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.comment {
+    background-color: #f8f9fa;
+    border-left: 4px solid #A78BFA;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.6;
+    font-style: italic;
+    position: relative;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0;
+}
+
+.comment::before {
+    content: '"';
+    font-size: 3rem;
+    color: #A78BFA;
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    font-family: Georgia, serif;
+    opacity: 0.3;
+}
+
+.comment::after {
+    content: '"';
+    font-size: 3rem;
+    color: #A78BFA;
+    position: absolute;
+    bottom: -25px;
+    right: 15px;
+    font-family: Georgia, serif;
+    opacity: 0.3;
+}
+
+
+@media (max-width: 768px) {
+    .backButton, .jogoInfo {
+        width: 100%;
+        align-self: center;
+        text-align: center;
+    }
+    .backButton {
+        text-align: center;
+    }
+}
+
+@media (max-width: 900px) {
+    .jogoInfo {
+        flex-direction: column;
+        width: 100%;
+    }
+    .jogoImageAndRating, .jogoDetails {
+        width: 100%;
+    }
+}

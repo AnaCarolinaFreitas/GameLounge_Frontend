@@ -5,6 +5,7 @@ import axios from "axios";
 import Header from "../../components/Header";
 import styles from "./jogos.module.css";
 import Image from "next/image";
+import Card from "../../components/Card";
 
 export default function page() {
   const [jogos, setJogos] = useState([]);
@@ -33,7 +34,7 @@ export default function page() {
       // 3. Atualizar state
       setJogos(response.data);
       console.log(jogos);
-      
+
       console.log("✅ State atualizado com", response.data.length, "jogos");
     } catch (error) {
       console.error("❌ Erro na busca:", error.message);
@@ -63,7 +64,6 @@ export default function page() {
       );
 
       console.log(jogos);
-      
     } else {
       console.log("📭 Nenhum dado encontrado no SessionStorage");
     }
@@ -84,7 +84,7 @@ export default function page() {
         </div>
 
         <div className={styles.filterHeader}>
-          <input type="text" />
+          <input type="text" className={styles.searchInput} />
           <div className={styles.filterButtons}>
             <button
               onClick={buscarJogos}
@@ -97,24 +97,20 @@ export default function page() {
         </div>
 
         <div className={styles.container}>
-          {jogos.map((jogo) => (
-            <div key={jogo.id} className={styles.card}>
+          {loading ? (
+            <div className={styles.loadingContainer}>
               <Image
-                src={
-                  jogo.image_url
-                    ? `http://localhost:3000/uploads/${jogo.image_url}`
-                    : "/images/fallback.png"
-                }
-                alt={jogo.name || "Jogo"}
-                width={150}
-                height={150}
-                className={styles.jogoFoto}
+                src="/images/loading.gif"
+                alt="Carregando jogos..."
+                width={100}
+                height={100}
+                className={styles.loadingGif}
               />
-              <h3 className={styles.jogoNome}>{jogo.name}</h3>
-              <p className={styles.jogoInfo}>{jogo.genre1}</p>
-              <p className={styles.jogoInfo}>{jogo.genre2}</p>
+              <p className={styles.loadingText}>Buscando jogos...</p>
             </div>
-          ))}
+          ) : (
+            jogos.map((jogo) => <Card key={jogo.id} jogo={jogo} />)
+          )}
         </div>
       </section>
     </>

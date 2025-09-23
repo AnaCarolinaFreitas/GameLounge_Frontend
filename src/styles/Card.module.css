@@ -1,0 +1,49 @@
+/* Estilos do Card extraídos de jogos.module.css */
+.card {
+	background-color: #F5F5F5;
+    border-radius: 15px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	width: 20rem;
+	min-height: 320px;
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	transition: transform 0.2s ease;
+	cursor: pointer;
+}
+
+.card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.jogoFoto {
+    width: 100%;
+    height: 15rem;
+    border-radius: 10px;
+    object-fit:contain;
+    margin-bottom: 10px;
+    background-color: #ffffff;
+}
+
+.jogoNome {
+	font-size: 10px;
+	text-align: left;
+	font-weight: bold;
+	margin: 10px ;
+}
+
+.genre {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.jogoInfo {
+	font-size: 10px;
+	margin: 10px;
+	background-color: #81DEA8;
+	padding: 5px;
+	border-radius: 20px;
+}
+
