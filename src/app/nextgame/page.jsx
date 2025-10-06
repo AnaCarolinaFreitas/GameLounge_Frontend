@@ -3,6 +3,8 @@ import { useState } from "react";
 import perguntas from "@/data/perguntas";
 import resultados from "@/data/resultados";
 import styles from "./nextgame.module.css";
+import Header from "@/components/Header";
+import Image from "next/image";
 
 export default function QuizPage() {
   // armazenamos a opção selecionada por índice para cada pergunta
@@ -107,8 +109,18 @@ export default function QuizPage() {
   const todasRespondidas = respostas.every((r) => r !== null);
 
   return (
-    <div className={styles.quiz}>
-      <h1>Quiz</h1>
+    <>
+    <Header />
+
+    <main className={styles.container}>
+      <section className={styles.sobreQuiz}>
+      <h1 className={styles.titulo}>NextGame</h1>
+      <p className={styles.descricao}>
+        Responda ao quiz abaixo para receber recomendações personalizadas de jogos de tabuleiro que combinam com o estilo e preferências do seu grupo. <span>Vamos começar a aventura!</span>
+      </p>
+      </section>
+    <section className={styles.quiz}>
+      <h1 className={styles.titulo}>Quiz</h1>
       {perguntas.map((p, i) => (
         <div key={p.id} className={styles.pergunta}>
           <p className={styles.textPergunta}>{p.pergunta}</p>
@@ -140,24 +152,37 @@ export default function QuizPage() {
 
       {resultado && (
         <div className={styles.resultado}>
-          <h2>{resultado.nome}</h2>
-          <p>{resultado.descricao}</p>
+          <h2 className={styles.nome}>{resultado.nome}</h2>
+          <p className={styles.descricao}>{resultado.descricao}</p>
         </div>
       )}
 
       {recomendacoes && recomendacoes.length > 0 && (
         <div className={styles.recomendacoes}>
           <h3>Recomendações</h3>
-          <ul>
-            {recomendacoes.map((j) => (
-              <li key={j.id}>
-                <strong>{j.name || j.title || "Título desconhecido"}</strong>
-                {j.short_description && <p>{j.short_description}</p>}
-              </li>
+          <div className={styles.listaRecomendacoes}>
+            {recomendacoes.map((jogo) => (
+              <div className={styles.jogo} key={jogo.id}>
+                <Image
+                                src={
+                                    jogo.image_url
+                                        ? `http://localhost:3000/uploads/${jogo.image_url}`
+                                        : "/images/fallback.png"
+                                }
+                                alt={jogo.name || "Jogo"}
+                                width={150}
+                                height={150}
+                                className={styles.jogoImagem}
+                            />
+                <strong>{jogo.name  || "Título desconhecido"}</strong>
+                {jogo.short_description && <p>{jogo.short_description}</p>}
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
       )}
-    </div>
+    </section>
+    </main>
+     </>
   );
 }
