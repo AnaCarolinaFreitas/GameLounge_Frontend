@@ -131,12 +131,46 @@
   background-color: #E0E7FF;
 }
 
+@media (max-width: 1024px) {
+  .homeBanner {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 3rem 3vw 2rem;
+    min-height: 40vh;
+  }
+  .banner {
+    top: 0;
+    left: 50%;
+    width: 100%;
+  }
+  .peao {
+    top: 55%;
+    left: 50%;
+    width: 30vw;
+    max-width: 150px;
+    min-width: 70px;
+    height: auto;
+  }
+
+  .homeText {
+    gap: 1rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .nextGame {
+    padding: 5rem;
+    align-items: center;
+    text-align: center;
+  }
+
+}
 @media (max-width: 768px) {
   .homeBanner {
     flex-direction: column;
     gap: 1rem;
     padding: 2rem 2vw 1rem;
-    min-height: 30vh;
+    min-height: 40vh;
   }
   .banner {
     top: 0;
@@ -149,6 +183,77 @@
     width: 40vw;
     max-width: 180px;
     min-width: 80px;
+    height: auto;
+  }
+
+  .homeText {
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .textContent {
+    width: 80%;
+  }
+
+  .nextGame {
+    padding: 3rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .peao {
+    top: 30%;
+    width: 50vw;
+    max-width: 150px;
+    min-width: 70px;
+    height: auto;
+  }
+
+  .homeText {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .textContent {
+    width: 80%;
+    padding: 2rem;
+    font-size: 0.9rem;
+  }
+
+  .textContent h1 {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+  }
+
+  .button {
+    width: 80%;
+  }
+
+  .nextGame {
+    padding: 2rem;
+  }
+
+  .nextGameText {
+    width: 80%;
+    font-size: 0.9rem;
+  }
+
+  .nextGameButton {
+    padding: 1.5rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+  .nextGameButton h2 {
+    font-size: 1rem;
+  }
+
+  .nextGameImage {
+    width: 80%;
     height: auto;
   }
 }

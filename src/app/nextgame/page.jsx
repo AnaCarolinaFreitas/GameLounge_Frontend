@@ -5,6 +5,7 @@ import resultados from "@/data/resultados";
 import styles from "./nextgame.module.css";
 import Header from "@/components/Header";
 import Image from "next/image";
+import axios from "axios";
 
 export default function QuizPage() {
   // armazenamos a opção selecionada por índice para cada pergunta
@@ -62,14 +63,33 @@ export default function QuizPage() {
   };
 
   // heurística simples para recomendar 3 jogos com base nas respostas e perfil
-  const gerarRecomendacoes = (perfilChave) => {
-    const jogos = carregarJogosSession();
-    if (!jogos || jogos.length === 0) {
+  const gerarRecomendacoes = async (perfilChave) => {
+    // tentar carregar do sessionStorage
+    const jogosSessao = carregarJogosSession() || [];
+    let jogosDisponiveis = Array.isArray(jogosSessao) ? jogosSessao.slice() : [];
+
+    // se houver menos de 3 jogos no sessionStorage, buscar na API e mesclar
+    if (!jogosDisponiveis || jogosDisponiveis.length < 3) {
+      try {
+        const resp = await axios.get("http://localhost:3000/api/games");
+        if (Array.isArray(resp.data)) {
+          // mesclar por id (dedupe)
+          const mapa = new Map();
+          (jogosDisponiveis || []).forEach((j) => mapa.set(String(j.id), j));
+          resp.data.forEach((j) => mapa.set(String(j.id), j));
+          jogosDisponiveis = Array.from(mapa.values());
+        }
+      } catch (e) {
+        console.warn("Erro ao buscar jogos da API para recomendações:", e);
+      }
+    }
+
+    if (!jogosDisponiveis || jogosDisponiveis.length === 0) {
       setRecomendacoes([]);
       return;
     }
 
-    // extrair algumas pistas das respostas: tamanho do grupo (pergunta 1), genero (2), cooperativo(3), duracao(6), faixa etaria(5)
+    // extrair pistas como antes
     const tamanhoIdx = respostas[0];
     const generoIdx = respostas[1];
     const coopIdx = respostas[2];
@@ -82,28 +102,59 @@ export default function QuizPage() {
     const duracao = perguntas[5].opcoes[duracaoIdx] || "";
     const idade = perguntas[4].opcoes[idadeIdx] || "";
 
-    // função de pontuação simples por correspondência de texto em campos comuns dos jogos
     const scoreFor = (j) => {
       let s = 0;
       const text = (j.name + " " + (j.genres || "") + " " + (j.description || "")).toLowerCase();
-      if (text.includes(generoEscolhido.toLowerCase())) s += 3;
-      if (text.includes(perfilChave)) s += 2; // perfil (festa/social/etc)
+      if (generoEscolhido && text.includes(generoEscolhido.toLowerCase())) s += 3;
+      if (perfilChave && text.includes(perfilChave)) s += 2;
       if (text.includes("coop") && cooperacao.toLowerCase().includes("cooper")) s += 2;
       if (tamanho.toLowerCase().includes("pequeno") && j.min_players <= 4) s += 1;
       if (tamanho.toLowerCase().includes("grande") && j.max_players >= 8) s += 1;
-      // duracao tentativa: procurar minutos em duração/description
       if (duracao.toLowerCase().includes("curto") && (j.duration <= 30 || (j.duration_text || "").includes("30"))) s += 1;
       if (duracao.toLowerCase().includes("longo") && (j.duration >= 60 || (j.duration_text || "").includes("60"))) s += 1;
-      // idade
       if (idade.toLowerCase().includes("crian") && j.min_age && j.min_age <= 12) s += 1;
       return s;
     };
 
-    const scored = jogos.map((j) => ({ jogo: j, score: scoreFor(j) }));
-    scored.sort((a, b) => b.score - a.score);
+    const scored = jogosDisponiveis.map((j) => ({ jogo: j, score: scoreFor(j) }));
+    console.log("🔎 Scores calculados para gerarRecomendacoes:");
+    scored.forEach((s) => console.log(s.jogo.name, "=>", s.score));
 
-    const top3 = scored.slice(0, 3).map((s) => s.jogo);
-    setRecomendacoes(top3);
+    scored.sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      const popA = a.jogo.popularity || a.jogo.rating || 0;
+      const popB = b.jogo.popularity || b.jogo.rating || 0;
+      if (popB !== popA) return popB - popA;
+      if (a.jogo.id && b.jogo.id) return String(a.jogo.id).localeCompare(String(b.jogo.id));
+      return 0;
+    });
+
+    const positivos = scored.filter((s) => s.score > 0).map((s) => s.jogo);
+    const escolhidos = [];
+
+    for (const j of positivos) {
+      if (!escolhidos.find((e) => e.id === j.id)) escolhidos.push(j);
+      if (escolhidos.length === 3) break;
+    }
+
+    if (escolhidos.length < 3) {
+      for (const s of scored) {
+        const j = s.jogo;
+        if (!escolhidos.find((e) => e.id === j.id)) {
+          escolhidos.push(j);
+        }
+        if (escolhidos.length === 3) break;
+      }
+    }
+
+    const uniqueTop = [];
+    for (const j of escolhidos) {
+      if (!uniqueTop.find((u) => u.id === j.id)) uniqueTop.push(j);
+      if (uniqueTop.length === 3) break;
+    }
+
+    console.log("✅ Recomendações finais:", uniqueTop.map((j) => j.name));
+    setRecomendacoes(uniqueTop);
   };
 
   const todasRespondidas = respostas.every((r) => r !== null);

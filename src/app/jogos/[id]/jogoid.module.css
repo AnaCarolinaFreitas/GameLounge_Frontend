@@ -196,22 +196,28 @@
 
 
 @media (max-width: 768px) {
-    .backButton, .jogoInfo {
-        width: 100%;
-        align-self: center;
-        text-align: center;
-    }
-    .backButton {
-        text-align: center;
-    }
-}
-
-@media (max-width: 900px) {
     .jogoInfo {
         flex-direction: column;
         width: 100%;
+        padding: 2rem;
     }
     .jogoImageAndRating, .jogoDetails {
         width: 100%;
+        margin: 0;
+    }
+    .jogoDetails {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .jogoInfo {
+        padding: 1rem;
+    }
+    .jogoImageAndRating, .jogoDetails {
+        width: 100%;
+    }
+    .jogoDetails {
+        margin-top: 1rem;
     }
 }

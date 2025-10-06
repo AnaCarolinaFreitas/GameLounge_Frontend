@@ -120,3 +120,43 @@
   font-weight: bold;
 }
 
+/* Responsividade */
+@media (max-width: 768px) {
+  .cardsContainer {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    position: static; /* Remove o posicionamento absoluto para empilhar os cards */
+  }
+
+  .card1,
+  .card2,
+  .card3,
+  .card4,
+  .card5 {
+    position: static; /* Remove o posicionamento absoluto */
+    transform: none; /* Remove as rotações e translações */
+    margin: 10px 0; /* Adiciona espaçamento entre os cards */
+    width: 50%; /* Ajusta a largura para caber na tela */
+    height: auto; /* Ajusta a altura automaticamente */
+  }
+
+  .card1:hover,
+  .card2:hover,
+  .card3:hover,
+  .card4:hover,
+  .card5:hover {
+    transform: scale(1.05); /* Apenas aumenta o tamanho ao passar o mouse */
+    z-index: 10;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@media (max-width: 480px) {
+  .exploreButton {
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    margin-top: 4rem;
+  }
+}
+

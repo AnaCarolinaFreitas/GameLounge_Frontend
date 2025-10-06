@@ -160,9 +160,11 @@
 .listaRecomendacoes {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap; /* allow wrapping on smaller screens */
+  gap: 1.5rem;
   padding: 2rem;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  justify-content: center; /* center the wrapped items */
 }
 
 .jogo{
@@ -171,4 +173,45 @@
   text-align: center;
   font-family: 'Inter', sans-serif;
   gap: 10px;
+  min-width: 180px; /* ensure a reasonable minimum width */
+  max-width: 260px; /* cap card width */
+  flex: 1 1 220px; /* allow flex grow/shrink, base 220px */
+  box-sizing: border-box;
+  padding: 0.5rem;
+}
+
+.jogoImagem {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #eee;
+}
+
+@media (max-width: 1024px) {
+  .listaRecomendacoes {
+    padding: 1rem;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 780px) {
+  .listaRecomendacoes {
+    padding: 1rem;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .jogo {
+    min-width: 140px;
+    max-width: 100%;
+    flex: 1 1 45%;
+  }
+
+  .jogoImagem {
+    width: 100%;
+    height: auto;
+  }
 }
