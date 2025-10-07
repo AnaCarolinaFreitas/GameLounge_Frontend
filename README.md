@@ -16,7 +16,7 @@
 
 Um **frontend em Next.js** para o **GameLounge** — um site sobre jogos de tabuleiro que lista títulos, permite filtragens e oferece um quiz (NextGame) que recomenda jogos com base no perfil do usuário.
 
-> 💡 Este README foi escrito passo a passo para iniciantes, incluindo instruções detalhadas de instalação, execução e depuração.
+> 💡 Este README foi escrito passo a passo para utilizar o projeto, incluindo instruções detalhadas de instalação, execução e depuração.
 
 ---
 
